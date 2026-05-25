@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>唐怀能 — 个人主页</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600&display=swap">
     <style>
+        :root {
+            --bg: #fafaf9;
+            --text: #1c1917;
+            --text-secondary: #57534e;
+            --border: #e7e5e4;
+            --accent: #2563eb;
+            --accent-light: #eff6ff;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,142 +22,488 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #e0e0e0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 60px 50px;
-            max-width: 480px;
-            width: 90%;
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        /* Header */
+        header {
             text-align: center;
-        }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 28px;
-            font-size: 42px;
-            color: #fff;
-            font-weight: 300;
-            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
         }
 
         h1 {
+            font-family: "Noto Serif SC", "SimSun", serif;
             font-size: 32px;
-            font-weight: 600;
-            color: #fff;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--text);
             margin-bottom: 8px;
-            letter-spacing: 2px;
         }
 
-        .tagline {
+        .subtitle {
             font-size: 15px;
-            color: #a0a0c0;
-            margin-bottom: 28px;
-            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
         }
 
-        .divider {
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            margin: 0 auto 28px;
-            border-radius: 1px;
+        .affiliation {
+            font-size: 14px;
+            color: var(--text-secondary);
         }
 
-        .bio {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #c0c0d0;
+        /* Sections */
+        section {
             margin-bottom: 36px;
         }
 
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        h2 {
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 16px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 1px;
         }
 
-        .link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 24px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #e0e0e0;
+        h3 {
             font-size: 15px;
-            font-weight: 500;
-            transition: all 0.25s ease;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
         }
 
-        .link:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        /* Contact row */
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
         }
 
-        .email {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-            border-color: rgba(102, 126, 234, 0.4);
+        .contact-row a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.15s;
         }
 
-        .email:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.35), rgba(118, 75, 162, 0.35));
+        .contact-row a:hover {
+            text-decoration: underline;
         }
 
-        .icon {
-            width: 20px;
-            height: 20px;
-            opacity: 0.8;
+        .contact-sep {
+            color: var(--border);
         }
 
-        .footer {
-            margin-top: 36px;
+        /* Education */
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 8px 0;
+        }
+
+        .edu-item + .edu-item {
+            border-top: 1px solid var(--border);
+        }
+
+        .edu-info {
+            flex: 1;
+        }
+
+        .edu-info .school {
+            font-weight: 600;
+        }
+
+        .edu-info .detail {
             font-size: 13px;
-            color: #606080;
+            color: var(--text-secondary);
+        }
+
+        .edu-year {
+            font-size: 13px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            margin-left: 16px;
+        }
+
+        /* Publications */
+        .pub-list {
+            list-style: none;
+            counter-reset: pub;
+        }
+
+        .pub-item {
+            padding: 10px 0;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .pub-item + .pub-item {
+            border-top: 1px solid var(--border);
+        }
+
+        .pub-authors {
+            color: var(--text);
+        }
+
+        .pub-year {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .pub-journal {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .pub-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 1px 6px;
+            border-radius: 3px;
+            margin-left: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .pub-badge.q1 {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .pub-badge.q2 {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .pub-badge.cn {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .pub-doi {
+            font-size: 12px;
+        }
+
+        .pub-doi a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .pub-doi a:hover {
+            text-decoration: underline;
+        }
+
+        /* Tag */
+        .tag {
+            display: inline-block;
+            font-size: 12px;
+            padding: 2px 10px;
+            border-radius: 100px;
+            background: var(--accent-light);
+            color: var(--accent);
+            margin: 2px 4px 2px 0;
+            font-weight: 500;
+        }
+
+        /* Simple list */
+        .simple-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .simple-list li {
+            padding: 6px 0;
+            font-size: 14px;
+        }
+
+        .simple-list li + li {
+            border-top: 1px solid var(--border);
+        }
+
+        .detail-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            color: #a8a29e;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 32px 16px 48px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .edu-item {
+                flex-direction: column;
+            }
+
+            .edu-year {
+                margin-left: 0;
+            }
+
+            .contact-row {
+                gap: 10px;
+            }
+        }
+
+        /* Print */
+        @media print {
+            body {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="avatar">唐</div>
-        <h1>唐怀能</h1>
-        <p class="tagline">自由职业者</p>
-        <div class="divider"></div>
-        <p class="bio">
-            热爱自由与创造，追求独立的工作方式。<br>
-            在自由职业的道路上探索无限可能。
-        </p>
-        <div class="links">
-            <a href="mailto:huainengt@163.com" class="link email">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <path d="M22 4L12 13L2 4"/>
-                </svg>
-                huainengt@163.com
-            </a>
-        </div>
-        <p class="footer">&copy; 2026 唐怀能</p>
+    <div class="container">
+
+        <header>
+            <h1>唐怀能</h1>
+            <p class="subtitle">博士 · 环境科学与工程</p>
+            <p class="affiliation">中国科学技术大学</p>
+            <div class="contact-row">
+                <a href="mailto:huainengt@163.com">huainengt@163.com</a>
+                <span class="contact-sep">|</span>
+                <span>18895755271</span>
+                <span class="contact-sep">|</span>
+                <span>安徽宿州</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>研究方向</h2>
+            <p style="margin-top:10px;">
+                <span class="tag">海洋地球化学</span>
+                <span class="tag">同位素地球化学</span>
+                <span class="tag">海洋沉积</span>
+                <span class="tag">古海洋学</span>
+                <span class="tag">海气CO₂交换</span>
+            </p>
+        </section>
+
+        <section>
+            <h2>教育经历</h2>
+
+            <div class="edu-item">
+                <div class="edu-info">
+                    <span class="school">中国科学技术大学</span>
+                    <span class="detail"> — 环境科学与工程系 · 博士</span>
+                </div>
+                <span class="edu-year">2021.09 – 2024.12</span>
+            </div>
+
+            <div class="edu-item">
+                <div class="edu-info">
+                    <span class="school">中国海洋大学</span>
+                    <span class="detail"> — 海洋地球科学学院 · 硕士（海洋地质）</span>
+                </div>
+                <span class="edu-year">2018.09 – 2021.06</span>
+            </div>
+
+            <div class="edu-item">
+                <div class="edu-info">
+                    <span class="school">宿州学院</span>
+                    <span class="detail"> — 资源与土木工程学院 · 本科（地质工程）</span>
+                </div>
+                <span class="edu-year">2014.09 – 2018.06</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>论文发表</h2>
+            <ol class="pub-list">
+
+                <li class="pub-item">
+                    <div class="pub-authors">
+                        <strong>Tang H.</strong>, Ye H., Yang W., Huang Y., Sun T., Ge Y., Zhang H., Sun Y., Lin S., Liu Z., Li W., Xie Z*.
+                    </div>
+                    <div>
+                        <span class="pub-year">(2024)</span>.
+                        East Asian Winter Monsoon and enhanced stratification in the western Pacific promoted giant marine diatom (<em>Ethmodiscus rex</em>) blooms during the last deglaciation.
+                    </div>
+                    <div class="pub-journal">Quaternary Science Reviews, 336, 108798.</div>
+                    <div>
+                        <span class="pub-badge q1">JCR Q1</span>
+                        <span class="pub-badge q1">TOP期刊</span>
+                        <span style="font-size:13px;color:#57534e;">IF: 3.2</span>
+                    </div>
+                    <div class="pub-doi">
+                        DOI: <a href="https://doi.org/10.1016/j.quascirev.2024.108798" target="_blank" rel="noopener">10.1016/j.quascirev.2024.108798</a>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-authors">
+                        <strong>Tang H.</strong>, Ye H., Yang W., Huang Y., Sun T., Ge Y., Zhang H., Sun Y., Lin S., Liu Z., Li W., Xie Z*.
+                    </div>
+                    <div>
+                        <span class="pub-year">(2024)</span>.
+                        Air-sea CO₂ exchange in the western Pacific influenced by Monsoon and giant diatom (<em>Ethmodiscus rex</em>) blooms during the last deglaciation.
+                    </div>
+                    <div class="pub-journal">Journal of Asian Earth Sciences, 276, 106335.</div>
+                    <div>
+                        <span class="pub-badge q2">JCR Q2</span>
+                        <span style="font-size:13px;color:#57534e;">IF: 2.7</span>
+                    </div>
+                    <div class="pub-doi">
+                        DOI: <a href="https://doi.org/10.1016/j.jseaes.2024.106335" target="_blank" rel="noopener">10.1016/j.jseaes.2024.106335</a>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-authors">
+                        Sun T., Yang W*., <strong>Tang H.</strong>, Huang Y., Liu H., Zhou L., Yang Y., Xu Q., Gao Y., Xie Z*.
+                    </div>
+                    <div>
+                        <span class="pub-year">(2024)</span>.
+                        Precipitation variation in the northern South China Sea of the last 700 years reconstructed by lagoon sediments.
+                    </div>
+                    <div class="pub-journal">Marine Geology, 475, 107364.</div>
+                    <div>
+                        <span class="pub-badge q2">JCR Q2</span>
+                        <span style="font-size:13px;color:#57534e;">IF: 2.6</span>
+                    </div>
+                    <div class="pub-doi">
+                        DOI: <a href="https://doi.org/10.1016/j.margeo.2024.107364" target="_blank" rel="noopener">10.1016/j.margeo.2024.107364</a>
+                    </div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-authors">
+                        <strong>唐怀能</strong>, 王永红*, 黄清辉.
+                    </div>
+                    <div>
+                        <span class="pub-year">(2021)</span>.
+                        南极菲尔德斯半岛西海岸海滩沉积物环境磁学特征及其控制因素.
+                    </div>
+                    <div class="pub-journal">海洋地质与第四纪地质, 41(04): 1-12.</div>
+                    <div>
+                        <span class="pub-badge cn">中文核心</span>
+                    </div>
+                    <div class="pub-doi">
+                        DOI: <a href="https://doi.org/10.16562/j.cnki.0256-1492.2020092001" target="_blank" rel="noopener">10.16562/j.cnki.0256-1492.2020092001</a>
+                    </div>
+                </li>
+
+            </ol>
+        </section>
+
+        <section>
+            <h2>科研项目</h2>
+            <ul class="simple-list">
+                <li>
+                    <strong>末次冰期以来边缘海和海岛记录</strong> — 中科院先导专项（B类），参与
+                    <div class="detail-text">2021.09 – 2024.12</div>
+                </li>
+                <li>
+                    <strong>海南万宁小海泻湖沉积重建晚全新世南海北部海啸历史</strong> — 国家自然科学基金，参与
+                    <div class="detail-text">2021.09 – 2024.12</div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>博士论文</h2>
+            <p style="font-size:14px;">
+                <strong>末次冰消期西太平洋 <em>Ethmodiscus rex</em> 勃发机制、生产力状况及对海气 CO₂ 交换的指示</strong>
+            </p>
+            <p style="font-size:13px;color:var(--text-secondary);margin-top:4px;">
+                导师：谢周清教授 · 中国科学技术大学
+            </p>
+            <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
+                通过分析硅藻席沉积物的 AMS ¹⁴C 年代、<em>Ethmodiscus rex</em> 硅藻壳体的硅同位素（δ³⁰Si）和碳同位素（δ¹³C），揭示了西太平洋末次冰消期 <em>E. rex</em> 硅藻勃发机制，并重建了西太平洋末次冰消期海气 CO₂ 交换的变化记录。
+            </p>
+        </section>
+
+        <section>
+            <h2>科考与实习</h2>
+            <ul class="simple-list">
+                <li>
+                    <strong>搭乘"实验3号"科考船</strong> — 南海南沙海域海水、大气颗粒物采集
+                    <div class="detail-text">2023.09.10 – 2023.09.26</div>
+                </li>
+                <li>
+                    <strong>中国地质调查局（武汉）</strong> — 江西赣江于都使用高密度电法评估采矿区污染水源
+                    <div class="detail-text">2020.07 – 2020.09</div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>学术会议</h2>
+            <ul class="simple-list">
+                <li>
+                    <strong>亚太多尺度气候环境变化动力学联合学术年会</strong>（咸阳）· 口头报告
+                    <div class="detail-text">2023.12</div>
+                </li>
+                <li>
+                    <strong>第八届青年地学论坛</strong>（武汉）· 海报展示
+                    <div class="detail-text">2023.05</div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>获奖情况</h2>
+            <ul class="simple-list">
+                <li>中国科学技术大学 <strong>一等学业奖学金</strong> <span class="detail-text">— 2024</span></li>
+                <li>中国海洋大学 <strong>学术创新奖学金</strong> <span class="detail-text">— 2021</span></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>专业技能</h2>
+            <p style="margin-top:10px;">
+                <span class="tag">沉积物采样</span>
+                <span class="tag">同位素分析</span>
+                <span class="tag">ICP-MS</span>
+                <span class="tag">EA-IRMS</span>
+                <span class="tag">Python</span>
+                <span class="tag">MATLAB</span>
+                <span class="tag">GMS</span>
+            </p>
+        </section>
+
+        <footer>
+            &copy; 2026 唐怀能 &nbsp;·&nbsp; <a href="mailto:huainengt@163.com">huainengt@163.com</a>
+        </footer>
+
     </div>
 </body>
 </html>
